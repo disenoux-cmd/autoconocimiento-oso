@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OVI: Mundo Autoconocimiento - Cartilla OSO</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #1e2238; /* Color azul oscuro de las montañas */
+            overflow-x: hidden;
+        }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 8px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: #f1f1f1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #cbd5e1; border-radius: 4px; }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+
+        @keyframes customPing {
+            75%, 100% { transform: scale(1.6); opacity: 0; }
+        }
+        .animate-custom-ping {
+            animation: customPing 1.5s cubic-bezier(0, 0, 0.2, 1) infinite;
+        }
+        
+        .modal-enter { animation: slideUpFade 0.4s ease-out forwards; }
+        .fade-in { animation: fadeIn 0.8s ease-out forwards; }
+        
+        @keyframes slideUpFade {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Camino punteado SVG sobre la imagen */
+        .path-line {
+            stroke-dasharray: 10;
+            animation: dash 30s linear infinite;
+        }
+        @keyframes dash {
+            to { stroke-dashoffset: -1000; }
+        }
+    </style>
+</head>
+<body>
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState } = React;
+
+        const mapNodes = [
+            {
+                id: 1,
+                title: "Historia de vida",
+                subtitle: "El inicio del trayecto",
+                icon: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z", 
+                x: 65, y: 70, // Posición basada en la montaña (abajo derecha)
+                color: "bg-teal-500",
+                content: "Conocer nuestra historia de vida es el primer paso para entender la influencia que tiene en la construcción de tu identidad. Las situaciones que hemos vivido, nuestros retos y momentos felices moldean quiénes somos hoy.",
+                exerciseTitle: "Mi Línea de Tiempo",
+                exerciseContent: "En tu cuaderno, dibuja una línea de tiempo. Ubica en ella las situaciones más importantes de tu vida: momentos que te hicieron sentir orgulloso, situaciones que representaron un reto o miedo, momentos de felicidad y decisiones clave. Puedes usar recortes, pinturas o colores."
+            },
+            {
+                id: 2,
+                title: "Mi Familia",
+                subtitle: "Nuestras raíces",
+                icon: "M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z",
+                x: 35, y: 55, // Medio izquierda
+                color: "bg-purple-500",
+                content: "Nuestra familia es un puente hacia nuestro futuro. Construir la historia familiar nos ayuda a comprender nuestras raíces, conocer las ocupaciones de nuestros antepasados y entender de dónde vienen nuestros intereses y proyecciones.",
+                exerciseTitle: "Mi Árbol Genealógico",
+                exerciseContent: "Dibuja a los miembros de tu familia abarcando tres generaciones (abuelos, padres/tíos, tú/hermanos/primos). Al lado de cada uno, crea un perfil escribiendo: Nombre, Lugar de nacimiento y Participación en la comunidad (ocupación)."
+            },
+            {
+                id: 3,
+                title: "Mis Capacidades",
+                subtitle: "Descubriendo tesoros",
+                icon: "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z",
+                x: 25, y: 35, // Más arriba izquierda
+                color: "bg-blue-500",
+                content: "Las habilidades son características específicas que te permiten realizar tareas. Cuando estas se desarrollan con esfuerzo, se convierten en competencias. Reconocer para qué eres bueno es la llave para proyectarte al mundo laboral o académico.",
+                exerciseTitle: "Inventario de Habilidades",
+                exerciseContent: "Dibuja un cuadro en tu cuaderno con dos columnas. En la primera, anota tus habilidades ('ej. Soy bueno con los números', 'Sé tocar un instrumento'). En la segunda, explica cómo adquiriste esa habilidad durante tu vida. Finalmente, escoge una y represéntala con un dibujo."
+            },
+            {
+                id: 4,
+                title: "Mis Sueños",
+                subtitle: "Mirando a la cima",
+                icon: "M14 6l-3.8 9.5H8.5L12 3h2l3.5 12.5h-1.7L14 6zM3.5 18.5l4-4L6 13l-4 4 1.5 1.5z",
+                x: 65, y: 30, // Medio derecha
+                color: "bg-yellow-500",
+                content: "El proyecto de vida es la planeación de tu futuro. No te limites a un solo camino; es importante permitirte descubrir muchos sueños y diferentes rutas que quieres alcanzar. Tener varios planes asegura tu resiliencia ante los obstáculos.",
+                exerciseTitle: "El Diagrama de mis Sueños",
+                exerciseContent: "Identifica 4 sueños que tengas a futuro. Por cada uno, haz un diagrama circular. Ubica el sueño en el centro y responde alrededor: 1) ¿Qué habilidades debo desarrollar? 2) ¿Qué rasgos de mi personalidad me ayudan? 3) ¿Qué intereses propios se relacionan? 4) ¿Qué recursos tengo a mi alrededor?"
+            },
+            {
+                id: 5,
+                title: "Trabajando por mis sueños",
+                subtitle: "Acción y proyección",
+                icon: "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z",
+                x: 48, y: 15, // Cima de la montaña (Centro arriba)
+                color: "bg-green-500",
+                content: "Las grandes metas dependen de cómo organizamos nuestras ideas y acciones. Identificar las fuentes de apoyo (familia, profesores, comunidad) y planificar paso a paso es fundamental para que tus sueños pasen de ser ideas a ser realidades.",
+                exerciseTitle: "Mi Cronograma de Acción",
+                exerciseContent: "Haz una tabla para planear los próximos dos meses. En ella, organiza por semanas las actividades específicas que debes hacer AHORA para acercarte a tu sueño. Ej: 'Investigar lugares de estudio', 'Hablar con un profesional del área', 'Organizar mis horarios'."
+            }
+        ];
+
+        const App = () => {
+            const [appState, setAppState] = useState('intro'); // intro, map, summit
+            const [activeNode, setActiveNode] = useState(null);
+            const [visitedNodes, setVisitedNodes] = useState([]);
+
+            const handleNodeClick = (node) => {
+                setActiveNode(node);
+            };
+
+            const saveAndContinue = () => {
+                const isLastNode = activeNode.id === mapNodes.length;
+                const newVisited = visitedNodes.includes(activeNode.id)
+                    ? visitedNodes
+                    : [...visitedNodes, activeNode.id];
+                setVisitedNodes(newVisited);
+                setActiveNode(null);
+                if (isLastNode && newVisited.length === mapNodes.length) {
+                    setAppState('summit');
+                }
+            };
+
+            const closeModal = () => setActiveNode(null);
+            const startJourney = () => setAppState('map');
+            const restartJourney = () => {
+                setVisitedNodes([]);
+                setAppState('intro');
+            };
+
+            const progress = (visitedNodes.length / mapNodes.length) * 100;
+
+            if (appState === 'intro') {
+                return (
+                    <div className="flex items-center justify-center min-h-screen bg-[#116e8f] p-6">
+                        <div className="bg-white rounded-3xl shadow-2xl max-w-4xl w-full overflow-hidden flex flex-col md:flex-row fade-in">
+                            <div className="w-full md:w-1/2 p-8 bg-[#eef7f9] flex flex-col items-center justify-center">
+                                <img src="images/image_a43321.png" alt="Equipaje OSO" className="max-w-full h-auto drop-shadow-xl" />
+                            </div>
+                            <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
+                                <h1 className="text-4xl font-extrabold text-[#1e2238] mb-4">Prepara tu equipaje</h1>
+                                <p className="text-gray-600 text-lg mb-6 leading-relaxed">
+                                    Antes de iniciar el viaje a la cima del autoconocimiento, revisemos tu mochila. 
+                                    Necesitarás un cuaderno para tus apuntes, una lupa para mirar los detalles, y mucha motivación.
+                                </p>
+                                <ul className="space-y-4 mb-8">
+                                    <li className="flex items-center text-gray-700">
+                                        <div className="bg-yellow-400 p-2 rounded-full mr-4 shadow-sm"><svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg></div>
+                                        Explora cada estación en la montaña.
+                                    </li>
+                                    <li className="flex items-center text-gray-700">
+                                        <div className="bg-teal-500 p-2 rounded-full mr-4 shadow-sm"><svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></div>
+                                        Realiza los ejercicios prácticos sugeridos.
+                                    </li>
+                                </ul>
+                                <button onClick={startJourney} className="bg-[#1e2238] hover:bg-[#2c3252] text-white text-lg font-bold py-4 px-8 rounded-xl shadow-lg transition-transform transform hover:scale-105">
+                                    ¡Comenzar el viaje!
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                );
+            }
+
+            if (appState === 'summit') {
+                return (
+                    <div className="flex flex-col items-center justify-center min-h-screen bg-[#1e2238] relative overflow-hidden fade-in">
+                        {/* Imagen de la cima adaptada al viewport */}
+                        <div className="absolute inset-0 z-0 flex items-center justify-center">
+                            <img src="images/image_a432fc.png" alt="Llegada a la cima" className="w-full h-full object-cover opacity-90" />
+                        </div>
+                        
+                        <div className="relative z-10 bg-white/95 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-2xl max-w-2xl text-center border-4 border-yellow-400 m-6">
+                            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1e2238] mb-6">¡Felicidades!</h2>
+                            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
+                                Has completado el viaje por el Mundo del Autoconocimiento. Tienes en tus manos las herramientas para tomar decisiones, reconocer tu valor y diseñar un plan para tu futuro.
+                            </p>
+                            <button onClick={restartJourney} className="bg-yellow-500 hover:bg-yellow-400 text-[#1e2238] font-bold py-3 px-8 rounded-xl shadow-md transition-colors text-lg">
+                                Volver a explorar
+                            </button>
+                        </div>
+                    </div>
+                );
+            }
+
+            return (
+                <div className="relative w-full h-screen overflow-hidden bg-[#1e2238] flex flex-col fade-in">
+                    
+                    {/* Encabezado OSO (Estilo acorde a las imágenes) */}
+                    <header className="relative z-20 bg-[#1e2238] shadow-lg px-6 py-4 flex flex-col sm:flex-row items-center justify-between border-b border-gray-700">
+                        <div className="flex items-center gap-3">
+                            <div className="bg-yellow-400 text-[#1e2238] p-2 rounded-xl shadow-inner">
+                                <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
+                                    <path d="M14 6l-3.8 9.5H8.5L12 3h2l3.5 12.5h-1.7L14 6zM3.5 18.5l4-4L6 13l-4 4 1.5 1.5z"/>
+                                </svg>
+                            </div>
+                            <div>
+                                <h1 className="text-xl md:text-2xl font-bold text-white leading-tight tracking-wide">Mundo Autoconocimiento</h1>
+                                <p className="text-sm text-yellow-400 font-semibold uppercase tracking-wider">Cartilla OSO</p>
+                            </div>
+                        </div>
+                        
+                        {/* Barra de progreso */}
+                        <div className="mt-4 sm:mt-0 w-full sm:w-72 bg-gray-800 p-3 rounded-xl border border-gray-700 shadow-inner">
+                            <div className="flex justify-between text-xs font-bold text-gray-300 mb-2">
+                                <span>TU PROGRESO</span>
+                                <span className="text-yellow-400">{visitedNodes.length} / {mapNodes.length}</span>
+                            </div>
+                            <div className="w-full bg-gray-600 rounded-full h-3">
+                                <div className="bg-green-400 h-3 rounded-full transition-all duration-700 shadow-[0_0_10px_rgba(74,222,128,0.6)]" style={{ width: `${progress}%` }}></div>
+                            </div>
+                        </div>
+                    </header>
+
+                    {/* Contenedor Principal Interactiva usando la imagen de fondo */}
+                    <main className="relative flex-grow w-full">
+                        <div 
+                            className="absolute inset-0 w-full h-full bg-cover bg-bottom md:bg-center"
+                            style={{ backgroundImage: "url('images/image_a4ab77.png')" }}
+                        ></div>
+                        
+                        {/* Capa SVG para dibujar el sendero entre los puntos */}
+                        <svg className="absolute inset-0 w-full h-full pointer-events-none z-0">
+                            <path 
+                                d={`M ${mapNodes[0].x}% ${mapNodes[0].y}% L ${mapNodes[1].x}% ${mapNodes[1].y}% L ${mapNodes[2].x}% ${mapNodes[2].y}% L ${mapNodes[3].x}% ${mapNodes[3].y}% L ${mapNodes[4].x}% ${mapNodes[4].y}%`} 
+                                fill="none" 
+                                stroke="rgba(255, 255, 255, 0.4)" 
+                                strokeWidth="4" 
+                                strokeDasharray="8 8" 
+                                strokeLinecap="round"
+                            />
+                        </svg>
+
+                        {/* Puntos Interactivos (Hotspots) */}
+                        {mapNodes.map((node, index) => {
+                            const isVisited = visitedNodes.includes(node.id);
+                            const isActive = activeNode && activeNode.id === node.id;
+                            const isNext = !isVisited && (visitedNodes.length === index); // Es el siguiente en el orden
+                            
+                            return (
+                                <button 
+                                    key={node.id}
+                                    onClick={() => handleNodeClick(node)}
+                                    className="absolute transform -translate-x-1/2 -translate-y-1/2 z-10 focus:outline-none group"
+                                    style={{ left: `${node.x}%`, top: `${node.y}%` }}
+                                    aria-label={`Ver ${node.title}`}
+                                >
+                                    {/* Indicador de "Siguiente" palpitante */}
+                                    {isNext && !isActive && (
+                                        <div className={`absolute inset-0 rounded-full opacity-80 animate-custom-ping ${node.color}`}></div>
+                                    )}
+                                    
+                                    {/* Botón central (Punto de la montaña) */}
+                                    <div className={`relative flex items-center justify-center w-12 h-12 md:w-14 md:h-14 rounded-full shadow-2xl transition-all duration-300 transform group-hover:scale-110 border-4 ${isVisited ? 'border-gray-300 bg-gray-500' : `border-white ${node.color}`}`}>
+                                        <span className="text-white font-black text-xl md:text-2xl">{node.id}</span>
+                                    </div>
+                                    
+                                    {/* Tooltip flotante (siempre visible en desktop, o en hover) */}
+                                    <div className="absolute top-full left-1/2 transform -translate-x-1/2 mt-3 w-max px-4 py-2 bg-[#1e2238] border border-gray-600 text-white text-sm font-bold rounded-lg shadow-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-20">
+                                        <div className="absolute -top-2 left-1/2 transform -translate-x-1/2 w-4 h-4 bg-[#1e2238] border-t border-l border-gray-600 rotate-45"></div>
+                                        <span className="relative z-10">{node.title}</span>
+                                    </div>
+                                </button>
+                            );
+                        })}
+                    </main>
+
+                    {}
+                    {activeNode && (
+                        <div className="absolute inset-0 z-50 flex items-center justify-center p-4 md:p-6 bg-[#1e2238]/80 backdrop-blur-sm transition-opacity">
+                            <div className="modal-enter relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden flex flex-col max-h-[90vh]">
+                                
+                                {/* Decoración superior modal */}
+                                <div className={`h-4 w-full ${activeNode.color}`}></div>
+                                
+                                {/* Botón cerrar */}
+                                <button 
+                                    onClick={closeModal}
+                                    className="absolute top-6 right-6 p-2 bg-gray-100 text-gray-600 rounded-full hover:bg-red-100 hover:text-red-600 transition-colors focus:outline-none z-10"
+                                >
+                                    <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12"></path>
+                                    </svg>
+                                </button>
+
+                                <div className="p-6 md:p-10 overflow-y-auto custom-scrollbar flex-grow">
+                                    
+                                    {/* Cabecera del Modal */}
+                                    <div className="flex items-center gap-5 mb-8 border-b pb-6">
+                                        <div className={`p-4 rounded-2xl shadow-lg ${activeNode.color} text-white`}>
+                                            <svg className="w-10 h-10" fill="currentColor" viewBox="0 0 24 24">
+                                                <path d={activeNode.icon}/>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <div className="flex items-center gap-2 mb-1">
+                                                <span className={`text-xs font-black px-2 py-1 rounded-md text-white ${activeNode.color}`}>PASO {activeNode.id}</span>
+                                                <h2 className="text-sm font-bold tracking-wider text-gray-500 uppercase">{activeNode.subtitle}</h2>
+                                            </div>
+                                            <h3 className="text-3xl md:text-4xl font-extrabold text-[#1e2238]">{activeNode.title}</h3>
+                                        </div>
+                                    </div>
+                                    
+                                    {/* Concepto Teórico */}
+                                    <div className="mb-8">
+                                        <p className="text-lg text-gray-700 leading-relaxed font-medium">{activeNode.content}</p>
+                                    </div>
+
+                                    {/* Sección: Ejercicio Práctico Tangible */}
+                                    <div className="mb-8 relative bg-emerald-50 rounded-2xl p-6 md:p-8 border border-emerald-200 shadow-sm">
+                                        <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-4">
+                                            <div className="bg-emerald-500 text-white p-3 rounded-full shadow-lg">
+                                                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path>
+                                                </svg>
+                                            </div>
+                                        </div>
+                                        <h4 className="font-extrabold text-emerald-900 text-xl mb-3 flex items-center gap-2">
+                                            Ejercicio Práctico: {activeNode.exerciseTitle}
+                                        </h4>
+                                        <p className="text-emerald-800 leading-relaxed text-lg bg-white p-4 rounded-xl border border-emerald-100 shadow-inner">
+                                            {activeNode.exerciseContent}
+                                        </p>
+                                    </div>
+
+                                    {/* Sección: Momento de Reflexión */}
+                                    <div className="bg-[#eef7f9] p-6 rounded-2xl border-l-4 border-[#116e8f] flex gap-4 items-start">
+                                        <div className="bg-[#116e8f] p-2 rounded-xl text-white flex-shrink-0 mt-1 shadow-md">
+                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-[#1e2238] text-lg">Momento de reflexión</h4>
+                                            <p className="text-[#116e8f] mt-2 leading-relaxed">
+                                                Cierra los ojos un momento y piensa: ¿Qué aprendizaje te deja este ejercicio? ¿Cómo influye esto en la meta que quieres alcanzar en la cima? Respira profundo antes de continuar tu viaje.
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                {/* Footer modal */}
+                                <div className="bg-gray-50 p-4 px-6 border-t border-gray-200 flex justify-between items-center">
+                                    <span className="text-sm font-semibold text-gray-500">Estación {activeNode.id} de 5</span>
+                                    <button 
+                                        onClick={saveAndContinue}
+                                        className={`px-8 py-3 text-white font-extrabold rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 ${activeNode.color}`}
+                                    >
+                                        {activeNode.id === mapNodes.length ? '¡Llegar a la cima!' : 'Guardar en mi cuaderno y continuar'}
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

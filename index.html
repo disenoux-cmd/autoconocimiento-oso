@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OVI: Mundo Autoconocimiento - Cartilla OSO</title>
+    <title>OVI: Mundo Autoconocimiento - Guía para Docentes</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.ico">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
     <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
@@ -64,58 +65,63 @@
         const mapNodes = [
             {
                 id: 1,
-                title: "Historia de vida",
-                subtitle: "El inicio del trayecto",
+                title: "Tu historia de vida",
+                subtitle: "El inicio de tu trayecto",
                 icon: "M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z", 
-                x: 65, y: 70, // Posición basada en la montaña (abajo derecha)
+                x: 65, y: 70,
                 color: "bg-teal-500",
-                content: "Conocer nuestra historia de vida es el primer paso para entender la influencia que tiene en la construcción de tu identidad. Las situaciones que hemos vivido, nuestros retos y momentos felices moldean quiénes somos hoy.",
-                exerciseTitle: "Mi Línea de Tiempo",
-                exerciseContent: "En tu cuaderno, dibuja una línea de tiempo. Ubica en ella las situaciones más importantes de tu vida: momentos que te hicieron sentir orgulloso, situaciones que representaron un reto o miedo, momentos de felicidad y decisiones clave. Puedes usar recortes, pinturas o colores."
+                content: "Como docente, tu historia de vida influye directamente en cómo acompañas a tus estudiantes. Conocer tus propios retos, logros y momentos clave te permite conectar con ellos desde la empatía y guiarlos con mayor autenticidad en su proceso de autoconocimiento.",
+                exerciseTitle: "Tu Línea de Tiempo",
+                exerciseContent: "Dibuja tu propia línea de vida. Identifica los momentos que te marcaron como persona y como docente: situaciones de orgullo, retos que superaste, decisiones que definieron tu camino. Este ejercicio te ayudará a reconocer tus fortalezas y a comprender cómo has llegado hasta aquí.",
+                classroomApplication: "¿Cómo podrías movilizar este ejercicio en tus estudiantes? ¿Cómo hacer su propia línea de tiempo les puede ayudar a reconocer sus mayores fortalezas y proyectar futuros posibles?"
             },
             {
                 id: 2,
-                title: "Mi Familia",
-                subtitle: "Nuestras raíces",
+                title: "Tus raíces",
+                subtitle: "De dónde vienes",
                 icon: "M17 3H7c-1.1 0-2 .9-2 2v16l7-3 7 3V5c0-1.1-.9-2-2-2z",
-                x: 35, y: 55, // Medio izquierda
+                x: 35, y: 55,
                 color: "bg-purple-500",
-                content: "Nuestra familia es un puente hacia nuestro futuro. Construir la historia familiar nos ayuda a comprender nuestras raíces, conocer las ocupaciones de nuestros antepasados y entender de dónde vienen nuestros intereses y proyecciones.",
-                exerciseTitle: "Mi Árbol Genealógico",
-                exerciseContent: "Dibuja a los miembros de tu familia abarcando tres generaciones (abuelos, padres/tíos, tú/hermanos/primos). Al lado de cada uno, crea un perfil escribiendo: Nombre, Lugar de nacimiento y Participación en la comunidad (ocupación)."
+                content: "Tu familia y tu entorno de origen moldearon tus valores, intereses y visión del mundo. Reconocer estas raíces te permite entender qué te motiva como educador y cómo puedes ayudar a tus estudiantes a valorar sus propias historias familiares como fuente de fortaleza.",
+                exerciseTitle: "Tu Árbol Genealógico",
+                exerciseContent: "Dibuja tu árbol genealógico abarcando al menos tres generaciones. Junto a cada persona, anota su nombre, lugar de nacimiento y qué hacían en su comunidad. Reflexiona: ¿Qué valores, oficios o tradiciones familiares influyeron en tu decisión de ser docente?",
+                classroomApplication: "¿Cómo podrías replicar este ejercicio con tus estudiantes? ¿Qué podrían aprender de esta actividad sobre sus propias raíces e identidad?"
             },
             {
                 id: 3,
-                title: "Mis Capacidades",
-                subtitle: "Descubriendo tesoros",
+                title: "Tus capacidades",
+                subtitle: "Tus fortalezas como guía",
                 icon: "M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z",
-                x: 25, y: 35, // Más arriba izquierda
+                x: 25, y: 35,
                 color: "bg-blue-500",
-                content: "Las habilidades son características específicas que te permiten realizar tareas. Cuando estas se desarrollan con esfuerzo, se convierten en competencias. Reconocer para qué eres bueno es la llave para proyectarte al mundo laboral o académico.",
-                exerciseTitle: "Inventario de Habilidades",
-                exerciseContent: "Dibuja un cuadro en tu cuaderno con dos columnas. En la primera, anota tus habilidades ('ej. Soy bueno con los números', 'Sé tocar un instrumento'). En la segunda, explica cómo adquiriste esa habilidad durante tu vida. Finalmente, escoge una y represéntala con un dibujo."
+                content: "Has desarrollado habilidades a lo largo de tu vida que hoy pones al servicio de tus estudiantes. Reconocer tus propias competencias te permite modelar el autoconocimiento y ayudar a otros a descubrir las suyas. Solo quien conoce sus fortalezas puede ayudar a otros a encontrar las propias.",
+                exerciseTitle: "Tu Inventario de Habilidades",
+                exerciseContent: "Haz una lista de tus habilidades personales y profesionales. Para cada una, reflexiona: ¿Cómo la desarrollaste? ¿Qué experiencias te ayudaron a fortalecerla? Identifica cuáles usas en tu labor docente y cuáles podrías potenciar aún más.",
+                classroomApplication: "¿Qué hace falta para que tus estudiantes conozcan mejor sus habilidades y las potencien? ¿Cómo vas a ayudarles a descubrirlas?"
             },
             {
                 id: 4,
-                title: "Mis Sueños",
-                subtitle: "Mirando a la cima",
+                title: "Tus sueños y proyecto de vida",
+                subtitle: "Hacia dónde vas",
                 icon: "M14 6l-3.8 9.5H8.5L12 3h2l3.5 12.5h-1.7L14 6zM3.5 18.5l4-4L6 13l-4 4 1.5 1.5z",
-                x: 65, y: 30, // Medio derecha
+                x: 65, y: 30,
                 color: "bg-yellow-500",
-                content: "El proyecto de vida es la planeación de tu futuro. No te limites a un solo camino; es importante permitirte descubrir muchos sueños y diferentes rutas que quieres alcanzar. Tener varios planes asegura tu resiliencia ante los obstáculos.",
-                exerciseTitle: "El Diagrama de mis Sueños",
-                exerciseContent: "Identifica 4 sueños que tengas a futuro. Por cada uno, haz un diagrama circular. Ubica el sueño en el centro y responde alrededor: 1) ¿Qué habilidades debo desarrollar? 2) ¿Qué rasgos de mi personalidad me ayudan? 3) ¿Qué intereses propios se relacionan? 4) ¿Qué recursos tengo a mi alrededor?"
+                content: "Tu proyecto de vida como docente está en constante evolución. Tener claridad sobre tus sueños y metas te permite inspirar a tus estudiantes a construir los suyos. Cuando tú te proyectas, les muestras que el futuro está lleno de posibilidades.",
+                exerciseTitle: "El Diagrama de tus Sueños",
+                exerciseContent: "Identifica 4 sueños o metas que tengas actualmente. Para cada uno, analiza: 1) ¿Qué habilidades necesitas desarrollar? 2) ¿Qué rasgos de tu personalidad te ayudan? 3) ¿Qué intereses se relacionan? 4) ¿Qué recursos tienes a tu alrededor?",
+                classroomApplication: "¿Cómo este ejercicio puede ayudar a guiar a tus estudiantes en su proyección después del colegio? ¿Qué harías distinto en tu aula para que este ejercicio les resulte muy significativo?"
             },
             {
                 id: 5,
-                title: "Trabajando por mis sueños",
-                subtitle: "Acción y proyección",
+                title: "Tu plan de acción",
+                subtitle: "Haciendo realidad tus sueños",
                 icon: "M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z",
-                x: 48, y: 15, // Cima de la montaña (Centro arriba)
+                x: 48, y: 15,
                 color: "bg-green-500",
-                content: "Las grandes metas dependen de cómo organizamos nuestras ideas y acciones. Identificar las fuentes de apoyo (familia, profesores, comunidad) y planificar paso a paso es fundamental para que tus sueños pasen de ser ideas a ser realidades.",
-                exerciseTitle: "Mi Cronograma de Acción",
-                exerciseContent: "Haz una tabla para planear los próximos dos meses. En ella, organiza por semanas las actividades específicas que debes hacer AHORA para acercarte a tu sueño. Ej: 'Investigar lugares de estudio', 'Hablar con un profesional del área', 'Organizar mis horarios'."
+                content: "Los sueños se concretan con planificación y acción. Como docente, tu capacidad de organizar metas y pasos te convierte en un modelo para tus estudiantes. Cuando tú planificas tu crecimiento, les enseñas que el futuro se construye con decisiones presentes.",
+                exerciseTitle: "Tu Cronograma de Acción",
+                exerciseContent: "Diseña un plan para los próximos dos meses. Organiza por semanas las acciones concretas que puedes hacer AHORA para acercarte a tus metas como docente. Ej: 'Implementar una nueva estrategia en el aula', 'Mentorear a un estudiante', 'Capacitarme en un tema específico'.",
+                classroomApplication: "¿Cómo puedes adaptar este ejercicio a tus estudiantes de diferentes grados? ¿Cómo crees que esta actividad puede aportarles a sus aprendizajes y proyecto de vida?"
             }
         ];
 
@@ -157,23 +163,27 @@
                                 <img src="images/image_a43321.png" alt="Equipaje OSO" className="max-w-full h-auto drop-shadow-xl" />
                             </div>
                             <div className="w-full md:w-1/2 p-8 md:p-12 flex flex-col justify-center">
-                                <h1 className="text-4xl font-extrabold text-[#1e2238] mb-4">Prepara tu equipaje</h1>
+                                <h1 className="text-4xl font-extrabold text-[#1e2238] mb-4">Guía para Docentes</h1>
                                 <p className="text-gray-600 text-lg mb-6 leading-relaxed">
-                                    Antes de iniciar el viaje a la cima del autoconocimiento, revisemos tu mochila. 
-                                    Necesitarás un cuaderno para tus apuntes, una lupa para mirar los detalles, y mucha motivación.
+                                    Antes de guiar a tus estudiantes en el viaje del autoconocimiento, te invitamos a recorrer tú mismo este camino. 
+                                    Solo quien se conoce puede inspirar a otros a conocerse.
                                 </p>
                                 <ul className="space-y-4 mb-8">
                                     <li className="flex items-center text-gray-700">
                                         <div className="bg-yellow-400 p-2 rounded-full mr-4 shadow-sm"><svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg></div>
-                                        Explora cada estación en la montaña.
+                                        Explora cada estación y reflexiona sobre tu propia historia.
                                     </li>
                                     <li className="flex items-center text-gray-700">
                                         <div className="bg-teal-500 p-2 rounded-full mr-4 shadow-sm"><svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15.232 5.232l3.536 3.536m-2.036-5.036a2.5 2.5 0 113.536 3.536L6.5 21.036H3v-3.572L16.732 3.732z"></path></svg></div>
-                                        Realiza los ejercicios prácticos sugeridos.
+                                        Realiza los ejercicios y descubre cómo llevarlos a tu aula.
+                                    </li>
+                                    <li className="flex items-center text-gray-700">
+                                        <div className="bg-purple-500 p-2 rounded-full mr-4 shadow-sm"><svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path></svg></div>
+                                        Conecta tu experiencia con la guía a tus estudiantes.
                                     </li>
                                 </ul>
                                 <button onClick={startJourney} className="bg-[#1e2238] hover:bg-[#2c3252] text-white text-lg font-bold py-4 px-8 rounded-xl shadow-lg transition-transform transform hover:scale-105">
-                                    ¡Comenzar el viaje!
+                                    ¡Comenzar mi viaje!
                                 </button>
                             </div>
                         </div>
@@ -183,18 +193,20 @@
 
             if (appState === 'summit') {
                 return (
-                    <div className="flex flex-col items-center justify-center min-h-screen bg-[#1e2238] relative overflow-hidden fade-in">
-                        {/* Imagen de la cima adaptada al viewport */}
-                        <div className="absolute inset-0 z-0 flex items-center justify-center">
-                            <img src="images/image_a432fc.png" alt="Llegada a la cima" className="w-full h-full object-cover opacity-90" />
+                    <div className="flex flex-col items-center min-h-screen bg-[#1e2238] relative overflow-hidden fade-in">
+                        <div className="absolute inset-0 z-0">
+                            <img src="images/image_a432fc.png" alt="Llegada a la cima" className="w-full h-full object-cover" />
                         </div>
                         
-                        <div className="relative z-10 bg-white/95 backdrop-blur-md p-8 md:p-12 rounded-3xl shadow-2xl max-w-2xl text-center border-4 border-yellow-400 m-6">
-                            <h2 className="text-4xl md:text-5xl font-extrabold text-[#1e2238] mb-6">¡Felicidades!</h2>
-                            <p className="text-xl text-gray-700 mb-8 leading-relaxed">
-                                Has completado el viaje por el Mundo del Autoconocimiento. Tienes en tus manos las herramientas para tomar decisiones, reconocer tu valor y diseñar un plan para tu futuro.
+                        <div className="absolute top-4 left-4 z-10 bg-white/75 backdrop-blur-sm p-3 md:p-4 rounded-lg shadow-lg max-w-xs text-left border-2 border-yellow-400">
+                            <h2 className="text-lg md:text-xl font-extrabold text-[#1e2238] mb-1">¡Felicidades, docente!</h2>
+                            <p className="text-xs text-gray-700 mb-2 leading-relaxed">
+                                Has completado tu viaje de autoconocimiento.
                             </p>
-                            <button onClick={restartJourney} className="bg-yellow-500 hover:bg-yellow-400 text-[#1e2238] font-bold py-3 px-8 rounded-xl shadow-md transition-colors text-lg">
+                            <p className="text-xs text-gray-600 mb-3 italic">
+                                "Solo quien se conoce puede ayudar a otros a conocerse."
+                            </p>
+                            <button onClick={restartJourney} className="bg-yellow-500 hover:bg-yellow-400 text-[#1e2238] font-bold py-1 px-4 rounded-lg shadow-md transition-colors text-xs">
                                 Volver a explorar
                             </button>
                         </div>
@@ -215,7 +227,7 @@
                             </div>
                             <div>
                                 <h1 className="text-xl md:text-2xl font-bold text-white leading-tight tracking-wide">Mundo Autoconocimiento</h1>
-                                <p className="text-sm text-yellow-400 font-semibold uppercase tracking-wider">Cartilla OSO</p>
+                                <p className="text-sm text-yellow-400 font-semibold uppercase tracking-wider">Guía para Docentes</p>
                             </div>
                         </div>
                         
@@ -313,7 +325,7 @@
                                         </div>
                                         <div>
                                             <div className="flex items-center gap-2 mb-1">
-                                                <span className={`text-xs font-black px-2 py-1 rounded-md text-white ${activeNode.color}`}>PASO {activeNode.id}</span>
+                                                <span className={`text-xs font-black px-2 py-1 rounded-md text-white ${activeNode.color}`}>ESTACIÓN {activeNode.id}</span>
                                                 <h2 className="text-sm font-bold tracking-wider text-gray-500 uppercase">{activeNode.subtitle}</h2>
                                             </div>
                                             <h3 className="text-3xl md:text-4xl font-extrabold text-[#1e2238]">{activeNode.title}</h3>
@@ -325,7 +337,7 @@
                                         <p className="text-lg text-gray-700 leading-relaxed font-medium">{activeNode.content}</p>
                                     </div>
 
-                                    {/* Sección: Ejercicio Práctico Tangible */}
+                                    {/* Sección: Ejercicio Práctico */}
                                     <div className="mb-8 relative bg-emerald-50 rounded-2xl p-6 md:p-8 border border-emerald-200 shadow-sm">
                                         <div className="absolute top-0 right-0 transform translate-x-2 -translate-y-4">
                                             <div className="bg-emerald-500 text-white p-3 rounded-full shadow-lg">
@@ -335,24 +347,39 @@
                                             </div>
                                         </div>
                                         <h4 className="font-extrabold text-emerald-900 text-xl mb-3 flex items-center gap-2">
-                                            Ejercicio Práctico: {activeNode.exerciseTitle}
+                                            Tu ejercicio: {activeNode.exerciseTitle}
                                         </h4>
                                         <p className="text-emerald-800 leading-relaxed text-lg bg-white p-4 rounded-xl border border-emerald-100 shadow-inner">
                                             {activeNode.exerciseContent}
                                         </p>
                                     </div>
 
-                                    {/* Sección: Momento de Reflexión */}
-                                    <div className="bg-[#eef7f9] p-6 rounded-2xl border-l-4 border-[#116e8f] flex gap-4 items-start">
+                                    {/* Sección: Momento de Reflexión Personal */}
+                                    <div className="bg-[#eef7f9] p-6 rounded-2xl border-l-4 border-[#116e8f] flex gap-4 items-start mb-6">
                                         <div className="bg-[#116e8f] p-2 rounded-xl text-white flex-shrink-0 mt-1 shadow-md">
                                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"></path>
                                             </svg>
                                         </div>
                                         <div>
-                                            <h4 className="font-bold text-[#1e2238] text-lg">Momento de reflexión</h4>
+                                            <h4 className="font-bold text-[#1e2238] text-lg">Tu reflexión personal</h4>
                                             <p className="text-[#116e8f] mt-2 leading-relaxed">
-                                                Cierra los ojos un momento y piensa: ¿Qué aprendizaje te deja este ejercicio? ¿Cómo influye esto en la meta que quieres alcanzar en la cima? Respira profundo antes de continuar tu viaje.
+                                                Antes de continuar, detente un momento. ¿Qué descubriste sobre ti al realizar este ejercicio? ¿Cómo influye este aprendizaje en tu forma de acompañar a tus estudiantes? Respira profundo y lleva esta reflexión a tu aula.
+                                            </p>
+                                        </div>
+                                    </div>
+
+                                    {/* Sección: Aplicación en el Aula */}
+                                    <div className="bg-amber-50 p-6 rounded-2xl border-l-4 border-amber-500 flex gap-4 items-start">
+                                        <div className="bg-amber-500 p-2 rounded-xl text-white flex-shrink-0 mt-1 shadow-md">
+                                            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"></path>
+                                            </svg>
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-amber-900 text-lg">Aplicación en el aula</h4>
+                                            <p className="text-amber-800 mt-2 leading-relaxed font-medium">
+                                                {activeNode.classroomApplication}
                                             </p>
                                         </div>
                                     </div>
@@ -365,7 +392,7 @@
                                         onClick={saveAndContinue}
                                         className={`px-8 py-3 text-white font-extrabold rounded-xl shadow-lg transition-transform transform hover:-translate-y-1 ${activeNode.color}`}
                                     >
-                                        {activeNode.id === mapNodes.length ? '¡Llegar a la cima!' : 'Guardar en mi cuaderno y continuar'}
+                                        {activeNode.id === mapNodes.length ? '¡Llegar a la cima!' : 'Guardar y continuar'}
                                     </button>
                                 </div>
                             </div>
